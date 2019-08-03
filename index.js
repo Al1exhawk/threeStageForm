@@ -150,9 +150,11 @@ next1.onclick = async event => {
 };
 
 selectEls[0].onchange = async function(e) {
+  e.preventDefault();
   const data = await getData();
   if (this.value !== "departments") {
     const newOpts = data["departments"][`${this.value}`];
+    selectOpt2.length = 0;
     newOpts.forEach = [].forEach;
     newOpts.forEach(vacancy => {
       selectOpt2.push(new Option(vacancy, vacancy));
