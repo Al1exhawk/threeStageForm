@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #777;
+  padding: 5%;
+}
+
+.container {
+  display: flex; /* flex */
+  background-color: #fff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 350px;
+  padding: 25px;
+  margin-top: 100px;
+}
+
+.container h4 {
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.container div {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.container input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 0;
+}
+.container select {
+  width: 100%;
+}
+
+.warningMessage {
+  padding: 0;
+  color: red;
+  display: none;
+}
+
+.btn {
+  width: auto;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background-color: rgb(70, 138, 240);
+  transition: transform 300ms linear;
+  margin-bottom: 0;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+#secondStage {
+  display: none;
+}
+
+#thirdStage {
+  display: none;
+}
+
+#thirdStage p {
+  display: inline;
+}
+
+#thirdStage span {
+  font-weight: bold;
+}
+
+#btnGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#btnGroup > button:first-child {
+  margin-right: 3px;
+}
