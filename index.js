@@ -22,51 +22,52 @@ const NextStage1 = () => {
   inputs.forEach = [].forEach;
 
   let nextStage = false;
-  inputs.forEach((item, i) => {
-    switch (i) {
-      case 0: {
+  inputs.forEach(item => {
+    switch (item.name) {
+      case "firstName": {
         if (/^[a-zA-Z'][a-zA-Z-' ]+[a-zA-Z']?$/.test(item.value)) {
           nextStage = true;
           item.style.border = "";
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='firstName']").style.display = "none";
           formData.name = item.value;
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='firstName']").style.display =
+            "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
 
         break;
       }
-      case 1: {
+      case "lastName": {
         if (/^[a-zA-Z'][a-zA-Z-' ]+[a-zA-Z']?$/.test(item.value)) {
           nextStage = true;
           item.style.border = "";
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='lastName']").style.display = "none";
           formData.name += " " + item.value;
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='lastName']").style.display = "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
 
         break;
       }
-      case 2: {
+      case "login": {
         if (item.value.trim() !== "") {
           nextStage = true;
           item.style.border = "";
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='login']").style.display = "none";
           formData.login = item.value;
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='login']").style.display = "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
 
         break;
       }
-      case 3: {
+      case "email": {
         if (
           /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
             item.value
@@ -76,16 +77,16 @@ const NextStage1 = () => {
           nextStage = true;
           formData.email = item.value;
 
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='email']").style.display = "none";
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='email']").style.display = "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
 
         break;
       }
-      case 5: {
+      case "password": {
         if (
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%^~*?&])[A-Za-z\d@$!%*#^~?&]{4,}$/.test(
             item.value
@@ -95,22 +96,28 @@ const NextStage1 = () => {
 
           nextStage = true;
           item.style.border = "";
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='password']").style.display = "none";
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='password']").style.display = "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
 
         break;
       }
-      case 6: {
-        if (item.value === inputs[i - 1].value && inputs[i - 1].value !== "") {
+      case "confirmPassword": {
+        if (
+          item.value ===
+            document.querySelector("input[name='password']").value &&
+          document.querySelector("input[name='password']").value !== ""
+        ) {
           nextStage = true;
           item.style.border = "";
-          warningMessages[i].style.display = "none";
+          document.querySelector("p[name='confirmPassword']").style.display =
+            "none";
         } else {
-          warningMessages[i].style.display = "inline";
+          document.querySelector("p[name='confirmPassword']").style.display =
+            "inline";
           item.style.border = "2px solid red";
           nextStage = false;
         }
@@ -167,22 +174,24 @@ selectEls[0].onchange = async function(e) {
 };
 
 const NextStage2 = () => {
-  let nextstage = false;
-  for (let i = 0; i < selectEls.length; i++) {
-    if (selectEls[i].value === selectEls[i].options[0].value) {
-      warningMessages[warningMessages.length - 1 - i].style.display = "inline";
-      nextstage = false;
-    } else {
-      warningMessages[warningMessages.length - 1 - i].style.display = "none";
-      if (i === 0) {
-        formData.department = selectEls[i].value;
-      } else {
-        formData.jobTitle = selectEls[i].value;
-      }
-      nextstage = true;
-    }
+  const nextstage = [];
+
+  if (selectEls[0].value === selectEls[0].options[0].value) {
+    nextstage.push(false);
+    document.querySelector("p[name='departments']").style.display = "inline";
+  } else {
+    formData.department = selectEls[0].value;
+    document.querySelector("p[name='departments']").style.display = "none";
   }
-  return nextstage;
+  if (selectEls[1].value === "vacancy") {
+    nextstage.push(false);
+    document.querySelector("p[name='vacancy']").style.display = "inline";
+  } else {
+    formData.jobTitle = selectEls[1].value;
+    document.querySelector("p[name='vacancy']").style.display = "none";
+  }
+
+  return nextstage.every(item => item);
 };
 next2.onclick = event => {
   event.preventDefault();

@@ -13,41 +13,51 @@
 
       <div>
         <input type="text" placeholder="First Name*" name="firstName" />
-        <p class="warningMessage">This field is required. Letters only</p>
+        <p name="firstName" class="warningMessage">
+          This field is required. Letters only
+        </p>
       </div>
+
       <div>
         <input type="text" placeholder="Last Name*" name="lastName" />
-        <p class="warningMessage">This field is required. Letters only</p>
+        <p name="lastName" class="warningMessage">
+          This field is required. Letters only
+        </p>
       </div>
 
       <div>
         <input type="text" placeholder="Login*" name="login" />
-        <p class="warningMessage">This field is required</p>
+        <p name="login" class="warningMessage">This field is required</p>
       </div>
 
       <div>
-        <input type="text" placeholder="Email*" name="email" />
-        <p class="warningMessage">
+        <input name="email" type="text" placeholder="Email*" name="email" />
+        <p name="email" class="warningMessage">
           Example: test@gmail.com
         </p>
       </div>
 
       <div>
         <input type="text" placeholder="Company Name" name="companyName" />
-        <p class="warningMessage"></p>
       </div>
 
       <div>
         <input type="password" placeholder="Password*" name="password" />
-        <p class="warningMessage">
+        <p name="password" class="warningMessage">
           Required at least one number(0-9), uppercase and lowercase
           letters(a-Z) and at least one special character(!@#$%^&*~)
         </p>
       </div>
 
       <div>
-        <input type="password" placeholder="Confirm Password*" />
-        <p class="warningMessage">Must be equal to password</p>
+        <input
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password*"
+        />
+        <p name="confirmPassword" class="warningMessage">
+          Must be equal to password
+        </p>
       </div>
 
       <button id="nextBtn1" class="btn">Next Step</button>
@@ -60,17 +70,18 @@
         <select name="departments" id="departments">
           <option value="departments">Departments</option>
         </select>
-        <p class="warningMessage">This field is required</p>
+        <p name="departments" class="warningMessage">This field is required</p>
       </div>
       <div>
         <select name="vacancy" id="vacancy" disabled>
           <option value="vacancy" selected>Vacancy</option>
         </select>
-        <p class="warningMessage">This field is required</p>
+        <p name="vacancy" class="warningMessage">This field is required</p>
       </div>
       <button id="nextBtn2" class="btn">Next Step</button>
     </div>
     <!--THIRD STAGE-->
+
     <div id="thirdStage" class="container">
       <h4>Check your infomation:</h4>
       <div>
