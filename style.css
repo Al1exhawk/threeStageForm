@@ -17,12 +17,11 @@ body {
   justify-content: center;
   max-width: 350px;
   padding: 25px;
-  margin-top: 100px;
+  margin: auto;
 }
 
 .container h4 {
   text-align: center;
-
   margin-bottom: 20px;
 }
 
